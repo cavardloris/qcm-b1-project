@@ -1,0 +1,29 @@
+<section class="login">
+    <form method="post" action="?route=login">
+<div class="login-header">
+    <h1>Quiz Culture Générale</h1>
+    <p>Connectez vous pour jouer</p>
+</div>
+<?php if (isset($errors) && !empty($errors)): ?>
+    <div class="error-box">
+        <?php foreach ($errors as $error): ?>
+            <p><?= htmlspecialchars($error) ?></p>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+<div class="login-form">
+    <div class="login-email">
+        <h3>Email</h3>
+        <input class="login-input-field" type="email" id="email" name="email">
+    </div>
+    <div class="login-password">
+        <h3>Mot de passe</h3>
+        <input class="login-input-field" type="password" id="password" name="password">
+    </div>
+    <div class="login-button">
+        <button type="submit"> Se connecter</button>
+    </div>
+    <div class="link-register">Pas encore de compte ? <a href="?route=register"> Inscrivez vous</a></div>
+</div>
+</form>
+</section>

@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --start-linear-color: #46178f;
+  --end-linear-color: #7d3cc7;
+  --text-main-color: #ffffff;
+  --text-second-color: #101828;
+  --text-third-color: #4a5565;
+  --text-fourth-color: #9810fa;
+  --bg-first-color: #e21b3c;
+  --bg-second-color: #1368ce;
+  --bg-third-color: #26890c;
+  --bg-fourth-color: #ffa602;
+  --bg-fifth-color: #9d4edd;
+  --bg-sixth-color: #ff006e;
+  --font-family: "Inter";
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to bottom right,
+    var(--start-linear-color),
+    var(--end-linear-color)
+  );
+}
+
+.error-box {
+  background-color: #fef3f2;
+  border: 1px solid #fee4e2;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.error-box p {
+  color: #b42318;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 4px 0;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.user > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 12px 18px;
+  border-radius: 100px;
+  color: var(--text-main-color);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.user > span::before {
+  content: "👤";
+  opacity: 0.8;
+  font-size: 16px;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-main-color);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 100px;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}

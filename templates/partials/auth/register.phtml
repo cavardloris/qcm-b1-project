@@ -1,0 +1,47 @@
+<section class="register">
+    <form action="?route=register" method="post">
+        <div class="register-header">
+            <h1>Quiz Culture Générale</h1>
+            <p>Créer votre compte</p>
+        </div>
+    <?php if (isset($errors) && !empty($errors)): ?>
+    <div class="error-box">
+        <?php foreach ($errors as $error): ?>
+            <p><?= htmlspecialchars($error) ?></p>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+        <div class="register-form">
+    <div class="register-name">
+        <div class="firstname">
+            <h3>Prénom</h3>
+            <input class="login-input-field" type="firstName" id="firstName" name="firstName">
+        </div>
+        <div class="lastname">
+            <h3>Nom</h3>
+            <input class="login-input-field" type="lastName" id="lastName" name="lastName">
+        </div>
+    </div>
+    <div class="pseudo">
+            <h3>Pseudo</h3>
+            <input class="login-input-field" type="pseudo" id="pseudo" name="pseudo">
+    </div>
+    <div class="email">
+            <h3>Email</h3>
+            <input class="login-input-field" type="email" id="email" name="email">
+        </div>
+    <div class="password">
+        <h3>Mot de passe</h3>
+        <input class="login-input-field" type="password" id="password" name="password">
+    </div>
+    <div class="confirm-password">
+            <h3>Prénom</h3>
+            <input class="login-input-field" type="confirmPassword" id="confirmPassword" name="confirmPassword">
+        </div>
+    <div class="register-button">
+        <button type="submit"> Créér un compte</button>
+    </div>
+    <div class="link-register">Deja un compte ? <a href="?route=login"> Connectez-vous</div>
+</div>
+    </form>
+</section>

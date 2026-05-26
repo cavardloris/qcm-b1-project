@@ -17,20 +17,20 @@ class User{
 
     public function getFirstName(): string
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $firstname): void
+    public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
     }
 
     public function getLastName(): string
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
-    public function setLastName(string $lastname): void
+    public function setLastName(string $lastName): void
     {
         $this->lastName = $lastName;
     }

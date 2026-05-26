@@ -1,0 +1,35 @@
+<section>
+    <div class="home-container">
+        <?php require "templates/partials/_header.phtml"; ?>
+    </div>
+    
+    <div class="title">
+        <h1>Culture Générale Quiz</h1>
+    </div>
+    
+    <div class="theme-container">
+        <a href="?route=choix-theme" class="box-theme theme-red">
+            <span class="box-icon">🧠</span>
+            <h3>Par Thème</h3>
+            <p>12 questions sur un thème de votre choix</p>                                           
+        </a>
+        
+        <a href="?route=culture-generale" class="box-theme theme-blue">
+            <span class="box-icon">🏆</span>
+            <h3>Culture Générale</h3>
+            <p>12 questions sur des thèmes variés</p>                                           
+        </a>
+        
+        <a href="?route=mort-subite" class="box-theme theme-yellow">
+            <span class="box-icon">⚡</span>
+            <h3>Mort Subite</h3>
+            <p>A la première erreur le jeu s'arrête</p>                                           
+        </a>
+    </div>
+    <div class="home-footer">
+        <p>Choisissez votre mode de jeu pour commencer</p>
+        <a href="?route=voir-statistiques" class="stats-btn">
+            <span>📊</span> Voir mes statistiques
+        </a>
+    </div>
+</section>
