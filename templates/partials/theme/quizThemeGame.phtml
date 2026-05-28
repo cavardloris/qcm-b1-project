@@ -1,0 +1,31 @@
+<section class="quiz-theme-game">
+    <div class="home-container">
+        <?php require "templates/partials/_header.phtml"; ?>
+    </div>
+    <div class="info-container">
+        <div class="question-number">
+            <h4>Question <?=$currentIndex +1 ?> /12</h4>
+        </div>
+        <span class="theme"><?= htmlspecialchars($currentQuestion->getTheme()->getName())?></span>
+        <a href="?route=choix-theme" class="arrow-back" title="Quitter le quiz">
+            <i class="fa-solid fa-xmark"></i> 
+        </a>
+    </div>
+    <div class="game-container">
+        <div class="question">
+            <h3><?=htmlspecialchars($currentQuestion->getStatement())?></h3>
+        </div>
+        <form action="?route=submit-answer" method="POST" class="quiz-form">
+            <div class="answers">
+                <?php foreach($answers as $answer): ?>
+                    <button type="submit" name="answer_id" value="<?= $answer->getId() ?>" class="box-answer">
+                        <span><?= htmlspecialchars($answer->getAnswer()) ?></span>
+                    </button>
+                <?php endforeach; ?>
+            </div>
+        </form>
+    </div>
+    <div class="score">
+        <p>Score actuel: <?= htmlspecialchars($score)?></p>
+    </div>
+</section>

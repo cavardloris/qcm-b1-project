@@ -42,7 +42,7 @@ class QuestionManager extends AbstractManager{
 
     public function findByThemeId(int $id) : array # pour trouver les questions par thème
     {
-        $query = $this->db->prepare('SELECT questions.*, themes.id AS theme_id, themes.name AS theme_name FROM questions INNER JOIN themes ON questions.theme_id = themes.id WHERE themes.id = :id ');
+        $query = $this->db->prepare('SELECT questions.*, themes.id AS theme_id, themes.name AS theme_name FROM questions INNER JOIN themes ON questions.theme_id = themes.id WHERE themes.id = :id ORDER BY RAND() LIMIT 12 '); //ORDER BY RAND() mélange les lignes
         $parameters = [
             "id" => $id
         ];

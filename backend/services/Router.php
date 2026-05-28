@@ -29,6 +29,10 @@ class Router{
                 $this->hc->home();
             }elseif($get["route"] === "choix-theme"){
                 $this->tc->home();
+            } elseif($get["route"] === "start-quiz"){
+            $this->tc->startQuiz();
+            }elseif($get["route"] === "quiz-theme-game"){
+                $this->tc->Game();
             }
              else {
                 $this->ac->notFound();

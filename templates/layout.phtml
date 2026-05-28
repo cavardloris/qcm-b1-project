@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCM GAME</title>
     <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <?php switch ($template) {
         case "auth/login.phtml": ?>
@@ -17,6 +18,14 @@
             break;
         case "home/home.phtml" :?>
     <link rel="stylesheet" href="assets/css/home.css">
+    <?php
+            break;
+        case "theme/themeHome.phtml" :?>
+    <link rel="stylesheet" href="assets/css/themeHome.css">
+    <?php
+            break;
+        case "theme/quizThemeGame.phtml" :?>
+    <link rel="stylesheet" href="assets/css/quizThemeGame.css">
     <?php
             break;
     } ?>

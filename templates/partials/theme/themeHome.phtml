@@ -1,0 +1,19 @@
+<section class="theme-page">
+    <div class="home-container">
+            <?php require "templates/partials/_header.phtml"; ?>
+    </div>
+    <a href="?route=home" class="arrow-back" title="Retour">
+        <i class="fa-solid fa-arrow-left"></i> Retour
+    </a>
+    <div class="title">
+        <h1>Choisissez votre thème</h1>
+    </div>
+    <div class="theme-container">
+        <?php foreach($themes as $theme):?>
+            <a href="?route=start-quiz&themeId=<?= $theme->getId() ?>" class="box-theme">
+                <h3><?=htmlspecialchars($theme->getName())?></h3>
+            </a>
+            <?php endforeach?>
+    </div>
+</section>    
+    
