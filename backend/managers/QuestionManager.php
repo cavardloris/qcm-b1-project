@@ -24,7 +24,7 @@ class QuestionManager extends AbstractManager{
 
     public function findById(int $id) : ?Question # pour trouver une question en particulier par son Id
     {
-        $query = $this->db->prepare('SELECT questions.*, themes.id AS theme_id, themes.name AS theme_name FROM questions INNER JOIN themes ON questions.theme_id = themes.id WHERE questions.id = :id');
+        $query = $this->db->prepare('SELECT questions.*, themes.id AS theme_id, themes.name AS theme_name FROM questions INNER JOIN themes ON questions.theme_id = themes.id WHERE questions.id = :id ');
         $parameters = [
             "id" => $id
         ];

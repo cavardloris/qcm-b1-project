@@ -61,4 +61,28 @@ class ThemeController extends AbstractController{
             'score' => $score
         ]);
     }
+
+    public function submitAnswer(){
+       if (!isset($_SESSION['quiz']) || !isset($_POST['answer_id'])) {
+            $this->redirect('index.php?route=choix-theme');
+            exit;
+        }
+
+        $answerId = (int)$_POST["answer_id"];
+        $currentIndex = $_SESSION['quiz']['current_index'];
+        $questions = $_SESSION['quiz']['questions'];
+        $currentQuestion = $questions[$currentIndex];
+        $answerManager = new AnswerManager();
+        $answers = $answerManager->findByQuestionId($currentQuestion->getId());
+
+        foreach($answers as $answer){
+            if(((int)$answer->getId() === $answerId) && (int)$answer->getIsCorrect() === 1){
+                $_SESSION['quiz']['score']++;
+                break;
+            }
+        }
+        $_SESSION['quiz']['current_index'] ++;
+        exit;
+
+    }
 }

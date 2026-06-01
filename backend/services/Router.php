@@ -33,6 +33,8 @@ class Router{
             $this->tc->startQuiz();
             }elseif($get["route"] === "quiz-theme-game"){
                 $this->tc->Game();
+            }elseif($get["route"] === "submit-answer-theme"){
+                $this->tc->submitAnswer();
             }
              else {
                 $this->ac->notFound();

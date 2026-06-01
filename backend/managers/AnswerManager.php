@@ -50,7 +50,7 @@ class AnswerManager extends AbstractManager{
     {
         $query = $this->db->prepare('SELECT questions.*, themes.id AS theme_id, themes.name AS theme_name,
                                          answers.id AS answer_id, answers.answer AS answer_answer, answers.is_correct AS answer_is_correct, answers.question_id AS answer_question_id 
-                                         FROM answers INNER JOIN questions ON answers.question_id = questions.id INNER JOIN themes ON questions.theme_id = themes.id WHERE answers.question_id = :id');
+                                         FROM answers INNER JOIN questions ON answers.question_id = questions.id INNER JOIN themes ON questions.theme_id = themes.id WHERE answers.question_id = :id ORDER BY RAND()');
         $parameters = [
             "id" => $id
         ];
