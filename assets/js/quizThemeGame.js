@@ -39,11 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
       //Récupération dynamique du formulaire lié au bouton cliqué
       const form = document.querySelector(".quiz-form");
       const score = document.querySelector(".score");
+      // document.querySelectorAll(".box-answer").forEach((btn) => {
+      //   btn.disabled = true;
+      // });
       console.log(score.textContent);
       const formData = new FormData(form); // on crée un formData qui stockera les réponses
 
-      // 💡 AJOUT 2 : Utilisation de e.currentTarget à la place de "this"
-      formData.append("answer_id", button.value); // on lui ajoute toutes les réponses
+      formData.append("answer_id", e.currentTarget.value); // on lui ajoute toutes les réponses
 
       document.querySelectorAll(".box-answer").forEach((btn) => {
         if (btn.dataset.correct === "1") {

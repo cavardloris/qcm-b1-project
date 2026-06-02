@@ -7,12 +7,14 @@
   --text-second-color: #101828;
   --text-third-color: #4a5565;
   --text-fourth-color: #9810fa;
-  --bg-first-color: #e21b3c;
-  --bg-second-color: #1368ce;
+  --bg-first-color: #ca122f;
+  --bg-second-color: #0f54a8;
   --bg-third-color: #26890c;
   --bg-fourth-color: #ffa602;
   --bg-fifth-color: #9d4edd;
   --bg-sixth-color: #ff006e;
+  --border-correct-color: #2ec4b6;
+  --border-wrong-color: #e63946;
   --font-family: "Inter";
 }
 

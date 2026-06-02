@@ -123,8 +123,8 @@ class ScoreManager extends AbstractManager{
             "theme_id" => $score->getTheme()->getId(),
             "points" => $score->getPoints(),
             "serie_max" => $score->getSerieMax(),
-            "mode" => $score->getMode(),
-            "score_date" => $score->getScoreDate(),
+            "mode" => $score->getMode()->value,
+            "score_date" => $score->getDate()->format('Y-m-m H:i:s'),
         ];
         $query->execute($parameters);
         $score->setId((int)$this->db->lastInsertId());

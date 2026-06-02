@@ -1,5 +1,5 @@
 <?php
-
+require_once 'backend/models/GameMode.php';
 class ThemeController extends AbstractController{
     public function home(){
         if(!isset($_SESSION["id"]))
@@ -49,8 +49,16 @@ class ThemeController extends AbstractController{
             exit;
         }
         $currentIndex = $_SESSION['quiz']['current_index']; // on obtient l'indice auquel nous sommes dans notre liste de questions
-        $currentQuestion = $_SESSION['quiz']['questions'][$currentIndex]; //on obtient la question a l'indice "currentIndex" dans notre liste de questions
+        $questions = $_SESSION['quiz']['questions'];
+
+        if($currentIndex >= count($questions)){
+            $this->redirect('index.php?route=quiz-theme-results');
+            exit;
+        }
+
+        $currentQuestion = $questions[$currentIndex]; //on obtient la question a l'indice "currentIndex" dans notre liste de questions
         $score = $_SESSION['quiz']['score'];
+
         $answerManager = new AnswerManager();
         $answers = $answerManager->findByQuestionId($currentQuestion->getId()); // currentQuestion étant une question dans notre liste de questions, on peut utiliser notre getter
     
@@ -83,6 +91,42 @@ class ThemeController extends AbstractController{
         }
         $_SESSION['quiz']['current_index'] ++;
         exit;
+
+    }
+
+    public function displayResults(){
+        if (!isset($_SESSION['quiz'])) {
+            $this->redirect('index.php?route=choix-theme');
+            exit;
+        }
+        $finalScore = $_SESSION['quiz']['score'];
+        $questions = $_SESSION['quiz']['questions'];
+        $totalQuestions = count($questions);
+        $question = $questions[0];
+        $theme = $question->getTheme();
+
+
+        $pseudo = $_SESSION["pseudo"];
+        $userId = $_SESSION["id"];
+        $currentDate = new \DateTime();
+
+        if($userId !== null){
+           $userManager = new UserManager();
+           $user = $userManager->findById($userId);
+
+           $score = new Score($user, $theme, $finalScore, 0, Mode::from('theme'), $currentDate, null);
+           $scoreManager = new ScoreManager();
+           $scoreManager->create($score);
+        }
+
+        unset($_SESSION['quiz']);
+
+        $this->render('theme/resultsTheme.phtml', [
+            "finalScore" => $finalScore,
+            "totalQuestions" => $totalQuestions,
+            "theme" => $theme,
+            "pseudo" => $pseudo
+        ]);
 
     }
 }

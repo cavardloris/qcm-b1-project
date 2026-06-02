@@ -1,0 +1,22 @@
+<section class="results-theme">
+    
+    <div class="container-results">
+        <div class="commentary">
+            <h3>Voici ton score <?= htmlspecialchars($pseudo)?> :</h3>
+        </div>
+        <div class="box-results">
+            <h3><?= htmlspecialchars($finalScore) ?>/12</h3>
+            <span><?= htmlspecialchars(round(($finalScore / 12) * 100)) ?>%</span>
+        </div>
+
+        <span class="theme-text">Thème: <?= htmlspecialchars($theme->getName()) ?></span>
+        
+        <div class="buttons">
+            <a href="?route=choix-theme" class="replay">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Rejouer
+            </a>
+            
+            <a href="?route=home" class="back-home">Retour à l'accueil</a>
+        </div>
+    </div>
+</section>

@@ -60,6 +60,23 @@ class QuestionManager extends AbstractManager{
         return $questions;
     }
 
+    public function find12Random() : array 
+    {
+        $query = $this->db->prepare('SELECT questions.*, themes.id AS theme_id, themes.name AS theme_name FROM questions INNER JOIN themes ON questions.theme_id = themes.id ORDER BY RAND() LIMIT 12 '); //ORDER BY RAND() mélange les lignes
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $questions = [];
+
+        foreach($result as $item)
+        {
+            $theme = new Theme($item["theme_name"], $item["theme_id"]);
+            $question = new Question($item["statement"], $item["explication"], $theme, $item["id"]);
+            $questions[] = $question;
+        }
+
+        return $questions;
+    }
+
     public function create(Question $question) : void # pour ajouter une question en bdd
     {
         $query = $this->db->prepare('INSERT INTO questions (statement, explication, theme_id) VALUES (:statement, :explication, :theme_id)');

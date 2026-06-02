@@ -85,7 +85,7 @@
 
 .box-answer {
   width: 100%;
-  border: none;
+  border: 2px solid transparent;
   outline: none;
   padding: 20px 24px;
   border-radius: 18px;
@@ -99,6 +99,16 @@
   transition:
     transform 0.1s ease,
     box-shadow 0.1s ease;
+}
+
+button.box-answer.correct {
+  border-color: var(--border-correct-color) !important;
+  box-shadow: 0 5px 0 var(--border-correct-color) !important;
+}
+
+button.box-answer.wrong {
+  border-color: var(--border-wrong-color) !important;
+  box-shadow: 0 5px 0 var(--border-wrong-color) !important;
 }
 
 .box-answer:active {
