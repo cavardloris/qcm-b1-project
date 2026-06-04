@@ -12,8 +12,8 @@ class Router{
         $this->ac = new AuthController();
         $this->hc = new HomeController();
         $this->tc = new ThemeController();
-        // $this->msc = new MortSubiteController();
-        // $this->cgc = new CultureGeneraleController();
+        $this->msc = new MortSubiteController();
+        $this->cgc = new CultureGeneraleController();
     }
 
     public function handLeRequest(array $get)
@@ -37,7 +37,19 @@ class Router{
                 $this->tc->submitAnswer();
             }elseif($get["route"] === "quiz-theme-results"){
                 $this->tc->displayResults();
-            } else {
+            }elseif($get["route"] === "start-quiz-cgc"){
+            $this->cgc->startQuiz();
+            }elseif($get["route"] === "quiz-cgc-game"){
+            $this->cgc->game();
+            }elseif($get["route"] === "submit-answer-cgc"){
+                $this->cgc->submitAnswer();
+            }elseif($get["route"] === "quiz-cgc-results"){
+                $this->cgc->displayResults();
+            }elseif($get["route"] === "start-quiz-ms"){
+            $this->msc->startQuiz();
+            }elseif($get["route"] === "quiz-ms-game"){
+            $this->msc->game();
+            }else {
                 $this->ac->notFound();
             }
         }

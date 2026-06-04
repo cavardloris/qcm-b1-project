@@ -7,7 +7,7 @@ class QuestionManager extends AbstractManager{
 
     public function findAll() : array # pour trouver toutes les questions
     {
-        $query = $this->db->prepare('SELECT questions.*, themes.id AS theme_id, themes.name AS theme_name FROM questions INNER JOIN themes ON questions.theme_id = themes.id ');
+        $query = $this->db->prepare('SELECT questions.*, themes.id AS theme_id, themes.name AS theme_name FROM questions INNER JOIN themes ON questions.theme_id = themes.id ORDER BY RAND()');
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $questions = [];
@@ -75,6 +75,13 @@ class QuestionManager extends AbstractManager{
         }
 
         return $questions;
+    }
+
+    public function count(): int
+    {
+        $query = $this->db->prepare('SELECT COUNT(id) FROM questions');
+        $query->execute();   
+        return (int) $query->fetchColumn(); // Grace a fetchColumn on obtient un tableau simple au lieu d'un tableau associatif
     }
 
     public function create(Question $question) : void # pour ajouter une question en bdd
