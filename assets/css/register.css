@@ -2,37 +2,65 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
-  width: 330px;
+  text-align: left;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
   background-color: var(--text-main-color);
-  border-radius: 24px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
-  padding: 32px 24px;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  box-sizing: border-box;
+  max-height: 98vh;
+}
+
+.register-header {
+  border-bottom: 1px solid #f0f2f5;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .register-header h1 {
-  font-size: 26px;
-  font-family: "Inter", sans-serif;
-  color: var(--text-second-color);
-  font-weight: 700;
-  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-family: var(--font-family), sans-serif;
+  color: var(--text-fourth-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
 }
 
 .register-header p {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  color: var(--text-third-color);
-  margin: 0 0 24px 0;
+  font-family: var(--font-family), sans-serif;
+  font-size: 24px;
+  color: var(--text-second-color);
+  font-weight: 700;
+  margin: 0;
+}
+
+.error-box {
+  background-color: var(--border-wrong-color);
+  color: var(--text-main-color);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.error-box p {
+  margin: 0;
+  font-family: var(--font-family), sans-serif;
+  font-size: 13px;
 }
 
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .register-name {
   display: flex;
+  flex-direction: column;
   gap: 12px;
   width: 100%;
 }
@@ -46,7 +74,7 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  gap: 6px;
+  gap: 4px;
   width: 100%;
 }
 
@@ -56,8 +84,9 @@
 .email h3,
 .password h3,
 .confirm-password h3 {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
+  font-family: var(--font-family), sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
   font-weight: 600;
   color: var(--text-third-color);
   margin: 0;
@@ -65,35 +94,35 @@
 
 .login-input-field {
   width: 100%;
-  padding: 12px 16px;
-  font-size: 15px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-size: 14px;
   border: 1px solid #d0d5dd;
-  border-radius: 12px;
+  border-radius: 8px;
   outline: none;
   background-color: #ffffff;
   color: var(--text-second-color);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family), sans-serif;
   transition: all 0.2s ease;
 }
 
 .login-input-field:focus {
   border-color: var(--start-linear-color);
-  box-shadow: 0 0 0 4px rgba(125, 60, 199, 0.15);
+  box-shadow: 0 0 0 4px rgba(70, 23, 143, 0.1);
 }
 
 .register-button button {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   background-color: var(--start-linear-color);
   color: var(--text-main-color);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   border: none;
-  border-radius: 14px;
+  border-radius: 8px;
   cursor: pointer;
   margin-top: 8px;
-  font-family: "Inter", sans-serif;
-  box-shadow: 0 4px 12px rgba(70, 23, 143, 0.2);
+  font-family: var(--font-family), sans-serif;
   transition: background-color 0.2s ease;
 }
 
@@ -102,11 +131,11 @@
 }
 
 .link-register {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
+  font-family: var(--font-family), sans-serif;
+  font-size: 13px;
   margin-top: 8px;
   color: var(--text-fourth-color);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .link-register a {
@@ -116,4 +145,39 @@
 
 .link-register a:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .register {
+    width: 600px;
+    max-width: none;
+    padding: 24px 40px;
+  }
+
+  .register-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+  }
+
+  .register-name {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .pseudo,
+  .email,
+  .register-button,
+  .link-register {
+    grid-column: 1 / -1;
+  }
+
+  .password {
+    grid-column: 1 / 2;
+  }
+
+  .confirm-password {
+    grid-column: 2 / 3;
+  }
 }

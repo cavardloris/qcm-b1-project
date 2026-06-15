@@ -26,7 +26,7 @@ class Score{
         $this->user = $user;
     }
 
-    public function getTheme():Theme
+    public function getTheme():?Theme
     {
         return $this->theme;
     }

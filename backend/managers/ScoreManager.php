@@ -115,16 +115,80 @@ class ScoreManager extends AbstractManager{
         return $scores;
     }
 
+    public function countGame(int $id) : int{
+        $query = $this->db->prepare('SELECT COUNT(id) FROM scores WHERE user_id = :id');
+        $parameters = [
+            "id" => $id
+        ];
+        $query->execute($parameters);   
+        return (int) $query->fetchColumn(); 
+    }
+    
+    public function countPoints(int $id) : int{
+        $query = $this->db->prepare('SELECT SUM(points) FROM scores WHERE user_id = :id');
+        $parameters = [
+            "id" => $id
+        ];
+        $query->execute($parameters);   
+        return (int) $query->fetchColumn(); 
+    }
+
+   public function countGameByMode(int $id, string $mode) : int
+   {
+        $query = $this->db->prepare('SELECT COUNT(id) FROM scores WHERE user_id = :id AND mode = :mode');
+        $parameters = [
+            "id" => $id,
+            "mode" => $mode
+        ];
+        $query->execute($parameters);   
+        return (int) $query->fetchColumn(); 
+    }
+    public function maxScoreMortSubite(int $id) : int
+    {
+        $query = $this->db->prepare('SELECT MAX(serie_max) FROM scores WHERE user_id = :id');
+        $parameters = [
+            "id" => $id
+        ];
+        $query->execute($parameters);   
+        return (int) $query->fetchColumn();    
+    }
+
+    public function maxScoresMortSubite(int $id) : array
+    {
+        $query = $this->db->prepare('SELECT serie_max, score_date FROM scores WHERE user_id = :id AND mode = "sudden_death" ORDER BY serie_max DESC LIMIT 5');
+        $parameters = [
+            "id" => $id
+        ];
+        $query->execute($parameters);   
+        return $query->fetchAll(PDO::FETCH_ASSOC);    
+    }
+
+    public function findFirstGame(int $id): ?DateTime
+    {
+         $query = $this->db->prepare('SELECT score_date FROM scores WHERE user_id = :id ORDER BY id ASC  LIMIT 1');
+        $parameters = [
+            "id" => $id
+        ];
+        $query->execute($parameters);   
+        $result = $query->fetch(PDO::FETCH_ASSOC);  
+        if($result && isset($result['score_date']))
+        {
+            return new \DateTime($result['score_date']);
+        }
+        return null;
+    }
+
     public function create(Score $score) : void # pour enregistrer un score dans la bdd
     {
         $query = $this->db->prepare('INSERT INTO scores (user_id, theme_id, points, serie_max, mode, score_date) VALUES (:user_id, :theme_id, :points, :serie_max, :mode, :score_date)');
+        $themeId = $score->getTheme() !== null ? $score->getTheme()->getId() : null; // pour vérifier si le theme est nul si on est en mort subite
         $parameters = [
             "user_id" => $score->getUser()->getId(),
-            "theme_id" => $score->getTheme()->getId(),
+            "theme_id" => $themeId,
             "points" => $score->getPoints(),
             "serie_max" => $score->getSerieMax(),
             "mode" => $score->getMode()->value,
-            "score_date" => $score->getDate()->format('Y-m-m H:i:s'),
+            "score_date" => $score->getDate()->format('Y-m-d H:i:s')
         ];
         $query->execute($parameters);
         $score->setId((int)$this->db->lastInsertId());
@@ -133,9 +197,10 @@ class ScoreManager extends AbstractManager{
     public function update(Score $score) : void # pour changer un score dans la bdd
     {
         $query = $this->db->prepare('UPDATE scores SET user_id = :user_id, theme_id = :theme_id, points = :points, serie_max = :serie_max, mode = :mode, score_date = :score_date  WHERE id = :id');
+        $themeId = $score->getTheme() !== null ? $score->getTheme()->getId() : null; // pour vérifier si le theme est nul si on est en mort subite
         $parameters = [
             "user_id" => $score->getUser()->getId(),
-            "theme_id" => $score->getTheme()->getId(),
+            "theme_id" => $themeId,
             "points" => $score->getPoints(),
             "serie_max" => $score->getSerieMax(),
             "mode" => $score->getMode(),

@@ -1,0 +1,40 @@
+<section class="page-profile">
+    <div class="home-container">
+        <?php require "templates/partials/_header.phtml"; ?>
+    </div>
+    <div class="profile-desktop-grid">
+        <div class="profile-header">
+            <a href="?route=home" class="arrow-back" title="Retour">
+                <i class="fa-solid fa-arrow-left"></i> Retour
+            </a>
+            <h3><?= htmlspecialchars($user->getFirstName())?> <?= htmlspecialchars($user->getLastName())?></h3>
+            <p><?= htmlspecialchars($user->getPseudo())?></p>
+            <span class="badge-role">
+                <i class="fa-solid fa-award"></i> 
+                <?= htmlspecialchars($user->getRole()->name) ?>
+            </span>
+        </div>
+        <div class="informations">
+            <div class="info-card">
+                <span class="info-label"><i class="fa-regular fa-user"></i> Prénom</span>
+                <span><?= htmlspecialchars($user->getFirstName())?></span>
+            </div>
+            <div class="info-card">
+                <span class="info-label"><i class="fa-regular fa-user"></i> Nom</span>
+                <span><?= htmlspecialchars($user->getLastName())?></span>
+            </div>
+            <div class="info-card">
+                <span class="info-label"><i class="fa-solid fa-hashtag"></i> Pseudo</span>
+                <span><?= htmlspecialchars($user->getPseudo())?></span>
+            </div>
+            <div class="info-card">
+                <span class="info-label"><i class="fa-regular fa-envelope"></i> Email</span>
+                <span><?= htmlspecialchars($user->getEmail())?></span>
+            </div>
+            <div class="info-card">
+                <span class="info-label"><i class="fa-regular fa-calendar"></i> Première partie</span>
+                <span><?= $firstGame ? htmlspecialchars($firstGame->format('d/m/Y')) : 'Aucune partie' ?></span>
+            </div>
+        </div>
+    </div>
+</section>

@@ -6,6 +6,8 @@ class Router{
     private ThemeController $tc;
     private MortSubiteController $msc;
     private CultureGeneraleController $cgc;
+    private StatistiqueController $sc;
+    private ProfileController $pc;
 
     public function __construct()
     {
@@ -14,6 +16,8 @@ class Router{
         $this->tc = new ThemeController();
         $this->msc = new MortSubiteController();
         $this->cgc = new CultureGeneraleController();
+        $this->sc = new StatistiqueController(); 
+        $this->pc = new ProfileController();
     }
 
     public function handLeRequest(array $get)
@@ -25,6 +29,8 @@ class Router{
                 $this->ac->logout();
             } elseif($get["route"] === "register"){
                 $this->ac->register();
+            }elseif($get["route"] === "profile"){
+                $this->pc->profile();
             }elseif($get["route"] === "home"){
                 $this->hc->home();
             }elseif($get["route"] === "choix-theme"){
@@ -49,6 +55,12 @@ class Router{
             $this->msc->startQuiz();
             }elseif($get["route"] === "quiz-ms-game"){
             $this->msc->game();
+            }elseif($get["route"] === "submit-answer-ms"){
+                $this->msc->submitAnswer();
+            }elseif($get["route"] === "quiz-ms-results"){
+                $this->msc->displayResults();
+            }elseif($get["route"] === "voir-statistiques"){
+                $this->sc->home();
             }else {
                 $this->ac->notFound();
             }

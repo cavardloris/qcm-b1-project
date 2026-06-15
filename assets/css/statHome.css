@@ -1,0 +1,207 @@
+.stats-page {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif !important;
+}
+
+.stat-container,
+.top-mort-subite {
+  background-color: var(--text-main-color);
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.stat-container {
+  border-radius: 32px 32px 0 0;
+  padding: 32px 24px 12px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.arrow-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-third-color);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.stat-container h2 {
+  color: var(--text-second-color);
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.box-stat {
+  width: 100%;
+  border-radius: 24px;
+  padding: 24px;
+  box-sizing: border-box;
+  color: var(--text-main-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.box-stat .number {
+  font-size: 36px;
+  font-weight: 700;
+  order: 2;
+  margin-top: 6px;
+}
+
+.box-stat h4 {
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.85;
+  margin: 6px 0 0 0;
+  order: 3;
+}
+
+.box-stat::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 28px;
+  order: 1;
+}
+
+.box-stat:nth-of-type(1) {
+  background-color: var(--start-linear-color);
+}
+.box-stat:nth-of-type(1)::before {
+  content: "\f559";
+}
+
+.box-stat:nth-of-type(2) {
+  background-color: var(--bg-fourth-color);
+}
+.box-stat:nth-of-type(2)::before {
+  content: "\f05b";
+}
+
+.box-stat:nth-of-type(3) {
+  background-color: var(--bg-first-color);
+}
+.box-stat:nth-of-type(3)::before {
+  content: "\f06d";
+}
+
+.top-mort-subite {
+  border-radius: 0 0 32px 32px;
+  padding: 12px 24px 32px 24px;
+}
+
+.top-mort-subite h3 {
+  color: var(--text-second-color);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-mort-subite h3::before {
+  content: "\f06d";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: var(--bg-first-color);
+  font-size: 16px;
+}
+
+.box-top-ms {
+  background-color: #f8f9fa;
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-ms-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.medal-icon {
+  font-size: 22px;
+  color: var(--bg-fourth-color);
+}
+
+.box-top-ms:nth-of-type(even) .medal-icon {
+  color: #94a3b8;
+}
+
+.top-ms-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.box-top-ms h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-second-color);
+  margin: 0;
+}
+
+.box-top-ms p {
+  font-size: 11px;
+  color: var(--text-third-color);
+  margin: 0;
+  opacity: 0.6;
+}
+
+.top-ms-badge {
+  color: #ff5a20;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (min-width: 992px) {
+  .stat-container,
+  .top-mort-subite {
+    max-width: 900px;
+    padding: 40px;
+  }
+
+  .stat-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 24px;
+    row-gap: 24px;
+  }
+
+  .arrow-back {
+    grid-column: 1 / span 3;
+    margin-bottom: 0;
+  }
+
+  .stat-container h2 {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    font-size: 36px;
+    margin: 0;
+    align-self: center;
+  }
+
+  .box-stat {
+    grid-row: 3;
+  }
+}

@@ -1,6 +1,6 @@
 <header class="header-bar">
 <div class="user">
-    <span><?= htmlspecialchars($_SESSION["pseudo"] ?? "Joueur") ?></span>
+    <a href="?route=profile"><?= htmlspecialchars($_SESSION["pseudo"] ?? "Joueur") ?></a>
     <a href="?route=logout" class="logout-btn">Deconnexion</a>
 </div>
 </header>

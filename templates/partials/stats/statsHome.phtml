@@ -1,0 +1,41 @@
+<section class="stats-page">
+    <div class="home-container">
+        <?php require "templates/partials/_header.phtml"; ?>
+    </div>
+     <div class="stat-container">
+        <a href="?route=home" class="arrow-back" title="Retour">
+            <i class="fa-solid fa-arrow-left"></i> Retour
+        </a>
+        <h2>Statistiques</h2>
+        <div class="box-stat">
+                <span class="number"> <?= htmlspecialchars($gamePlayed)?></span>
+                <h4>Parties jouées</h4> 
+        </div>
+        <div class="box-stat">
+                <span class="number"> <?= htmlspecialchars(round($totalPoints/($gamePlayedInTheme*12) *100))?> %</span>
+                <h4>Score Moyen</h4>
+        </div>
+        <div class="box-stat">
+            <span class="number"><?= htmlspecialchars($maxScoreMS)?></span>
+            <h4>Record mort subite</h4>
+        </div>
+     </div>
+     <<div class="top-mort-subite">
+   <h3>Top-5 Mort Subite</h3>
+       <?php foreach($maxScoresMS as $maxScore): ?>
+           <?php $dateObj = new DateTime($maxScore['score_date']); ?>
+           <div class="box-top-ms">
+               <div class="top-ms-left">
+                   <i class="fa-solid fa-medal medal-icon"></i>
+                   <div class="top-ms-info">
+                       <h4>Série de <?= htmlspecialchars($maxScore['serie_max'])?> questions</h4>
+                       <p><?= htmlspecialchars($dateObj->format('d/m/Y'))?></p>
+                   </div>
+               </div>
+               <span class="top-ms-badge">
+                   <i class="fa-solid fa-fire"></i><?= htmlspecialchars($maxScore['serie_max'])?>
+               </span>
+           </div>
+       <?php endforeach; ?>
+</div>
+</section>

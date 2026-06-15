@@ -1,0 +1,21 @@
+<section class="results-ms">
+    
+    <div class="container-results">
+        <div class="commentary">
+            <h3>Voici ton score <?= htmlspecialchars($pseudo)?> :</h3>
+        </div>
+        <div class="box-results">
+            <h3><?= htmlspecialchars($finalScore)?> / <?=htmlspecialchars($totalQuestion)?></h3>
+            <span><?= htmlspecialchars(round(($finalScore / $totalQuestion) * 100)) ?>%</span>
+        </div>
+
+        
+        <div class="buttons">
+            <a href="?route=start-quiz-ms" class="replay">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Rejouer
+            </a>
+            
+            <a href="?route=home" class="back-home">Retour à l'accueil</a>
+        </div>
+    </div>
+</section>  

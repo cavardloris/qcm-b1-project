@@ -1,34 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   document.querySelectorAll(".box-answer").forEach((button) => {
-//     // dans la div box-answer, pour chaque bouton on fait la fonction suivante
-//     button.addEventListener("click", function (e) {
-//       // si le bouton est cliqué alors
-//       e.preventDefault(); // on empeche le rechargement direct de la page
-
-//       const form = document.querySelector(".quiz-form"); // on récupère le formulaire
-//       const formData = new FormData(form); // on crée un formData qui stockera les réponses
-//       formData.append("answer_id", this.value); // on lui ajoute toutes les réponses
-
-//       document.querySelectorAll(".box-answer").forEach((btn) => {
-//         if (btn.dataset.correct === "1") {
-//           btn.classList.add("correct");
-//         } else {
-//           btn.classList.add("wrong");
-//         }
-//       });
-
-//       fetch(form.action, {
-//         method: form.method,
-//         body: formData,
-//       }).then(() => {
-//         setTimeout(() => {
-//           window.location.reload();
-//         }, 2500); // dès que l'utilisateur choisit sa réponse on l'affiche pendant 2,5 secondes et on recharge la page
-//       });
-//     });
-//   });
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".box-answer").forEach((button) => {
     // dans la div box-answer, pour chaque bouton on fait la fonction suivante
