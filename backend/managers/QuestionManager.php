@@ -84,6 +84,13 @@ class QuestionManager extends AbstractManager{
         return (int) $query->fetchColumn(); // Grace a fetchColumn on obtient un tableau simple au lieu d'un tableau associatif
     }
 
+    public function countByThemeId() : array
+    {
+        $query = $this->db->prepare('SELECT theme_id, COUNT(id) AS total FROM questions GROUP BY theme_id');
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_KEY_PAIR); // retourne un tableau sous la forme de clé valeur
+    }
+
     public function create(Question $question) : void # pour ajouter une question en bdd
     {
         $query = $this->db->prepare('INSERT INTO questions (statement, explication, theme_id) VALUES (:statement, :explication, :theme_id)');

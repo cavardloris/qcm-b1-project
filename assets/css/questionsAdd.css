@@ -1,0 +1,248 @@
+.questions-add-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f9fafb;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.questions-add-section .home-container {
+  width: 100%;
+  padding: 0;
+}
+
+/* ---- CONTENEUR FORMULAIRE ---- */
+
+.form-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.form-container h2 {
+  font-family: var(--font-family), sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #101828;
+  margin: 0 0 32px 0;
+}
+
+/* ---- ALERTES ERREURS ---- */
+
+.alert-danger {
+  background-color: #fef3f2;
+  border: 1px solid #fecdca;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.alert-danger ul {
+  margin: 0;
+  padding: 0 0 0 16px;
+  color: #b42318;
+  font-family: var(--font-family), sans-serif;
+  font-size: 14px;
+}
+
+/* ---- FORMULAIRE ---- */
+
+.question-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Card principale */
+.question-form > .form-group,
+.answers-group,
+.highlight-group {
+  background-color: #ffffff;
+  border: 1px solid #eaecf0;
+  border-radius: 0;
+  padding: 20px 24px;
+  border-bottom: none;
+}
+
+.question-form > .form-group:first-child,
+.answers-group:first-of-type {
+  border-radius: 12px 12px 0 0;
+}
+
+/* Regrouper tout dans une seule card */
+.question-form > .form-group {
+  border-radius: 0;
+}
+
+.question-form > .form-group:first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.answers-group {
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  border: none;
+}
+
+.answers-group > .form-group {
+  background-color: #ffffff;
+  border: 1px solid #eaecf0;
+  border-bottom: none;
+  padding: 20px 24px;
+  border-radius: 0;
+}
+
+.answers-group h3 {
+  font-family: var(--font-family), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #98a2b3;
+  margin: 0;
+  padding: 16px 24px 12px;
+  background-color: #f9fafb;
+  border: 1px solid #eaecf0;
+  border-bottom: none;
+}
+
+.highlight-group {
+  background-color: #ffffff;
+  border: 1px solid #eaecf0;
+  border-bottom: 1px solid #eaecf0;
+  border-radius: 0 0 12px 12px;
+  padding: 20px 24px;
+}
+
+/* ---- CHAMPS ---- */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: var(--font-family), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #344054;
+}
+
+.form-group input,
+.form-group select {
+  font-family: var(--font-family), sans-serif;
+  font-size: 15px;
+  color: #101828;
+  background-color: #ffffff;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder {
+  color: #98a2b3;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--start-linear-color, #46178f);
+  box-shadow: 0 0 0 3px rgba(70, 23, 143, 0.08);
+}
+
+/* ---- ACTIONS ---- */
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-cancel {
+  font-family: var(--font-family), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4a5565;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #f2f4f7;
+  color: #101828;
+}
+
+.btn-submit {
+  font-family: var(--font-family), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--start-linear-color, #46178f);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+}
+
+/* ---- DESKTOP ---- */
+
+@media (min-width: 768px) {
+  .form-container {
+    margin: 48px auto;
+    padding: 0 24px;
+  }
+
+  .form-container h2 {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+
+  /* Réponses en grille 2x2 sur desktop */
+  .answers-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .answers-group h3 {
+    grid-column: 1 / -1;
+  }
+
+  .answers-group > .form-group:nth-child(3),
+  .answers-group > .form-group:nth-child(4) {
+    border-bottom: none;
+  }
+
+  .answers-group > .form-group:nth-child(2) {
+    border-left: none;
+  }
+
+  .answers-group > .form-group:nth-child(4) {
+    border-left: none;
+  }
+}

@@ -122,4 +122,12 @@ class AnswerManager extends AbstractManager{
         ];
         $query->execute($parameters);
     }
+
+    public function deleteByQuestionId(int $id){
+        $query = $this->db->prepare('DELETE FROM answers WHERE question_id = :id');
+        $parameters = [
+            "id" => $id
+        ];
+        $query->execute($parameters);
+    }
 }

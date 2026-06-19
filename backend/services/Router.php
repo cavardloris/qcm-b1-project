@@ -8,6 +8,7 @@ class Router{
     private CultureGeneraleController $cgc;
     private StatistiqueController $sc;
     private ProfileController $pc;
+    private AdminController $adc;
 
     public function __construct()
     {
@@ -18,6 +19,7 @@ class Router{
         $this->cgc = new CultureGeneraleController();
         $this->sc = new StatistiqueController(); 
         $this->pc = new ProfileController();
+        $this->adc = new AdminController();
     }
 
     public function handLeRequest(array $get)
@@ -61,9 +63,19 @@ class Router{
                 $this->msc->displayResults();
             }elseif($get["route"] === "voir-statistiques"){
                 $this->sc->home();
+            }elseif($get["route"] === "questions-edit"){
+                $this->adc->questionDisplay();
+            }elseif($get["route"] === "question-delete"){
+                $this->adc->deleteQuestion();
+            }elseif($get["route"] === "question-add"){
+                $this->adc->addQuestion();
+            }elseif($get["route"] === "users-edit"){
+                $this->adc->displayUsers();
+            }elseif($get["route"] === "retire-user"){
+                $this->adc->deleteUser();
             }else {
                 $this->ac->notFound();
-            }
+            }   
         }
         else{
             $this->ac->login();

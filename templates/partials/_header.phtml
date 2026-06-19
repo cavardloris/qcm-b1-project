@@ -1,6 +1,9 @@
 <header class="header-bar">
-<div class="user">
-    <a href="?route=profile"><?= htmlspecialchars($_SESSION["pseudo"] ?? "Joueur") ?></a>
-    <a href="?route=logout" class="logout-btn">Deconnexion</a>
-</div>
+    <div class="user">
+        <a href="?route=profile"><?= htmlspecialchars($_SESSION["pseudo"]) ?></a>
+        <?php if($_SESSION["role"] === "ADMIN"):?>
+        <a href="?route=questions-edit"><i class="fa-solid fa-gear"></i> Admin</a>
+        <?php endif?>
+        <a href="?route=logout" class="logout-btn">Deconnexion</a>
+    </div>
 </header>

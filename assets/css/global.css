@@ -33,6 +33,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Inter", sans-serif;
   background: linear-gradient(
     to bottom right,
     var(--start-linear-color),
@@ -59,75 +60,182 @@ body {
 
 .header-bar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 4px 0;
+  padding: 16px 0;
   box-sizing: border-box;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .user {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 12px;
+  gap: 16px;
 }
 
-.user > a:first-child {
-  display: flex;
+.user > a {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px 18px 10px 12px;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
   border-radius: 100px;
   color: var(--text-main-color);
   font-family: var(--font-family), sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  flex-grow: 1;
-  transition: background-color 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
 }
 
-.user > a:first-child:hover {
-  background-color: rgba(255, 255, 255, 0.18);
+.user > a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.user > a:first-child {
+  margin-right: auto;
 }
 
 .user > a:first-child::before {
   content: "\f007";
   font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  color: var(--bg-fourth-color);
+  font-weight: 400;
   font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 32px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
 }
 
-.logout-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--text-main-color);
-  text-decoration: none;
-  font-family: var(--font-family), sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  height: 52px;
-  padding: 0 20px;
-  border-radius: 100px;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
+.user > a[href="?admin-home"] {
+  background-color: rgba(202, 18, 47, 0.3);
+}
+
+.user > a[href="?admin-home"]:hover {
+  background-color: rgba(202, 18, 47, 0.5);
+}
+
+.logout-btn::before {
+  content: "\f08b";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 16px;
 }
 
 .logout-btn:hover {
-  background-color: var(--bg-first-color);
-  transform: translateY(-2px);
+  background-color: var(--border-wrong-color);
+}
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-family), sans-serif;
+  border-bottom: 1px solid #eaecf0;
+  margin-bottom: 24px;
+}
+
+.side-bar .left {
+  padding: 0 16px;
+}
+
+.side-bar .left h4 {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-third-color);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.side-bar .left h3 {
+  margin: 4px 0 0 0;
+  font-size: 20px;
+  color: var(--text-second-color);
+  font-weight: 800;
+}
+
+.side-bar .buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.side-bar .buttons::-webkit-scrollbar {
+  display: none;
+}
+
+.side-bar .buttons a {
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--text-third-color);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 100px;
+  background-color: #ffffff;
+  border: 1px solid #eaecf0;
+  transition: all 0.2s ease;
+}
+
+.side-bar .buttons a:hover {
+  background-color: #f8f9fa;
+  color: var(--text-second-color);
+}
+
+.side-bar .buttons a.active {
+  background-color: var(--start-linear-color);
+  color: var(--text-main-color);
+  border-color: var(--start-linear-color);
+}
+
+.side-bar > a {
+  padding: 0 16px;
+  text-decoration: none;
+  color: var(--text-third-color);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.side-bar > a:hover {
+  color: var(--start-linear-color);
+}
+
+@media (min-width: 768px) {
+  .side-bar {
+    flex-direction: row;
+    align-items: center;
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #eaecf0;
+    border-radius: 12px;
+  }
+
+  .side-bar .left,
+  .side-bar .buttons,
+  .side-bar > a {
+    padding: 0;
+  }
+
+  .side-bar .left {
+    flex-shrink: 0;
+  }
+
+  .side-bar .buttons {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    margin-left: 24px;
+    flex-grow: 1;
+  }
+
+  .side-bar > a {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
 }

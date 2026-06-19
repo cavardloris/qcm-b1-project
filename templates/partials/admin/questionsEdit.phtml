@@ -1,0 +1,38 @@
+<section class="questions-edit">
+    <div class="home-container">
+        <?php require "templates/partials/admin/_headerAdministration.phtml"; ?>
+    </div>
+    <div class="filter-theme">
+    <h3>THÈME</h3>
+    <a class="theme-filter active" data-theme-id="all">
+        Toutes <span><?= $totalQuestions ?></span>
+    </a>
+    
+    <?php foreach($themes as $theme): ?>
+        <a class="theme-filter" data-theme-id="<?= $theme->getId() ?>">
+            <?= htmlspecialchars($theme->getName()) ?>
+            <span><?= $questionsCount[$theme->getId()] ?? 0 ?></span>
+        </a>
+    <?php endforeach; ?>
+</div>
+
+    <div class="questions-list">
+    <div class="list-header">
+        <a href="?route=question-add" class="btn-add"><i class="fa-solid fa-plus"></i> Ajouter</a>
+    </div>
+
+    <?php foreach($questions as $question): ?>
+        <div class="question-card" data-theme-id="<?= $question->getTheme()->getId() ?>">
+            <span><?= htmlspecialchars($question->getStatement()) ?></span>
+            <a href="?route=question-delete&id=<?= $question->getId() ?>" class="btn-delete">
+                <i class="fa-solid fa-trash"></i>
+            </a>
+        </div>
+    <?php endforeach; ?>
+
+    <?php if(empty($questions)): ?>
+        <p class="empty-state">Aucune question</p>
+    <?php endif; ?>
+</div>
+    <script module="" src="assets/js/adminQuestionSort.js"></script>
+</section>

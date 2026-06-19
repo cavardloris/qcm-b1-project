@@ -1,0 +1,23 @@
+<section class="users-display">
+    <div class="home-container">
+        <?php require "templates/partials/admin/_headerAdministration.phtml"; ?>
+    </div>
+    <div class="user-row user-header">
+        <span>UTILISATEUR</span>
+        <span>EMAIL</span>
+        <span>ACTIONS</span>
+    </div>
+
+    <?php foreach($users as $user): ?>
+    <div class="user-row">
+        <div class="user-info">
+            <span class="name"><?= htmlspecialchars($user->getPseudo()) ?></span>
+            <span class="email"><?= htmlspecialchars($user->getEmail()) ?></span>
+        </div>
+        <span><?= htmlspecialchars($user->getEmail()) ?></span>
+        <div class="user-actions">
+            <a href="?route=retire-user&id=<?= $user->getId() ?>" class="btn-retirer">Retirer</a>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</section>

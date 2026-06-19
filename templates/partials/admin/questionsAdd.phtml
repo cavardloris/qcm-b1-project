@@ -1,0 +1,77 @@
+<section class="questions-add-section">
+     <div class="home-container">
+        <?php require "templates/partials/admin/_headerAdministration.phtml"; ?>
+    </div>
+    <div class="form-container">
+        <h2>Ajouter une nouvelle question</h2>
+
+        <?php if (isset($errors) && !empty($errors)): ?>
+            <div class="alert alert-danger">
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= htmlspecialchars($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <form action="index.php?route=question-add" method="POST" class="question-form">
+            
+            <div class="form-group">
+                <label for="theme_id">Thème de la question</label>
+                <select name="theme_id" id="theme_id" required>
+                    <option value="">-- Sélectionnez un thème --</option>
+                    <?php foreach ($themes as $theme): ?>
+                        <option value="<?= $theme->getId() ?>">
+                            <?= htmlspecialchars($theme->getName()) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="statement">Intitulé de la question</label>
+                <input type="text" name="statement" id="statement" placeholder="Ex: Quelle est la capitale de l'Australie ?" required>
+            </div>
+
+            <div class="answers-group">
+                <h3>Les 4 réponses possibles</h3>
+                
+                <div class="form-group">
+                    <label for="answer_1">Réponse 1</label>
+                    <input type="text" name="answer_1" id="answer_1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="answer_2">Réponse 2</label>
+                    <input type="text" name="answer_2" id="answer_2" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="answer_3">Réponse 3</label>
+                    <input type="text" name="answer_3" id="answer_3" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="answer_4">Réponse 4</label>
+                    <input type="text" name="answer_4" id="answer_4" required>
+                </div>
+            </div>
+
+            <div class="form-group highlight-group">
+                <label for="correct_answer">Quelle est la bonne réponse ?</label>
+                <select name="correct_answer" id="correct_answer" required>
+                    <option value="1">Réponse 1</option>
+                    <option value="2">Réponse 2</option>
+                    <option value="3">Réponse 3</option>
+                    <option value="4">Réponse 4</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <a href="index.php?route=questions-edit" class="btn-cancel">Annuler</a>
+                <button type="submit" class="btn-submit">Enregistrer la question</button>
+            </div>
+        </form>
+    </div>
+</section>
