@@ -75,6 +75,13 @@ class UserManager extends AbstractManager{
         return null;
     }
 
+    public function count():int
+    {
+        $query = $this->db->prepare('SELECT COUNT(id) FROM users');
+            $query->execute();   
+            return (int) $query->fetchColumn(); 
+    }
+
     public function create(User $user) : void # cette fonction va servir a créer un utilisateur dans la base de données
     {
         $query = $this->db->prepare('INSERT INTO users (firstName,lastName,pseudo,email,password,role) VALUES (:firstName, :lastName, :pseudo, :email, :password, :role)');

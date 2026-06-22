@@ -178,6 +178,20 @@ class ScoreManager extends AbstractManager{
         return null;
     }
 
+    public function mostPlayed() : array
+    {
+        $query = $this->db->prepare('SELECT users.pseudo, users.firstName, users.lastName, COUNT(scores.id) as nb_parties FROM scores INNER JOIN users ON scores.user_id = users.id GROUP BY users.id ORDER BY nb_parties DESC LIMIT 5');
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function count():int
+    {
+        $query = $this->db->prepare('SELECT COUNT(id) FROM scores');
+            $query->execute();   
+            return (int) $query->fetchColumn(); 
+    }
+
     public function create(Score $score) : void # pour enregistrer un score dans la bdd
     {
         $query = $this->db->prepare('INSERT INTO scores (user_id, theme_id, points, serie_max, mode, score_date) VALUES (:user_id, :theme_id, :points, :serie_max, :mode, :score_date)');

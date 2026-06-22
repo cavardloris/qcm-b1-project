@@ -73,6 +73,8 @@ class Router{
                 $this->adc->displayUsers();
             }elseif($get["route"] === "retire-user"){
                 $this->adc->deleteUser();
+            }elseif($get["route"] === "stats-display"){
+                $this->adc->statsDisplay();
             }else {
                 $this->ac->notFound();
             }   

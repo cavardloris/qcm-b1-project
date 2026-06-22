@@ -1,6 +1,7 @@
 <?php
 
 class AdminController extends AbstractController{
+
     public function questionDisplay(){
         $questionManager = new QuestionManager();
         $questions = $questionManager->findAll();
@@ -90,7 +91,7 @@ class AdminController extends AbstractController{
     }
 
     public function deleteUser(){
-        
+
         if (!isset($_GET["id"]) || empty($_GET["id"])) {
             $this->redirect('index.php?route=users-edit');
             return;
@@ -111,4 +112,29 @@ class AdminController extends AbstractController{
 
         $this->redirect('index.php?route=users-edit');
     }
+
+        public function statsDisplay(){
+
+            $scoreManager = new ScoreManager();
+            $countScore = $scoreManager->count();
+            $mostPlayers = $scoreManager->mostPlayed();
+
+            $userManager = new UserManager();
+            $countUser = $userManager->count();
+
+            $questionManager = new QuestionManager();
+            $countQuestion = $questionManager->count();
+
+            $themeManager = new ThemeManager();
+            $countTheme = $themeManager->count();
+
+            $this->render('admin/statsDisplay.phtml', [
+                "countScore" => $countScore,
+                "mostPlayers" => $mostPlayers,
+                "countUser" => $countUser,
+                "countQuestion" => $countQuestion,
+                "countTheme" => $countTheme
+            ]);
+
+        }
 } 

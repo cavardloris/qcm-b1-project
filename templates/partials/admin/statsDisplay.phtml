@@ -1,0 +1,48 @@
+<section class="stats-display">
+    <div class="home-container">
+        <?php require "templates/partials/admin/_headerAdministration.phtml"; ?>
+    </div>
+    <div class="number-main">
+    <div class="stat-card">
+        <div class="stat-icon icon-user"><i class="fa-solid fa-users"></i></div>
+        <span class="stat-label">Utilisateurs</span>
+        <span class="stat-value"><?= htmlspecialchars($countUser) ?></span>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon icon-question"><i class="fa-solid fa-book"></i></div>
+        <span class="stat-label">Questions</span>
+        <span class="stat-value"><?= htmlspecialchars($countQuestion) ?></span>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon icon-game"><i class="fa-solid fa-trophy"></i></div>
+        <span class="stat-label">Parties jouées</span>
+        <span class="stat-value"><?= htmlspecialchars($countScore) ?></span>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon icon-theme"><i class="fa-solid fa-layer-group"></i></div>
+        <span class="stat-label">Thèmes</span>
+        <span class="stat-value"><?= htmlspecialchars($countTheme) ?></span>
+        </div>
+    </div>
+    <h3>TOP PLAYERS</h3>
+    <div class="players">
+        <div class="players-header">
+            <span>JOUEUR</span>
+            <span>PARTIES</span>
+        </div>
+    
+        <?php $rank = 1; foreach($mostPlayers as $player):?>
+            <div class="box-player">
+                <span class="rank-number">#<?= $rank++ ?></span>
+                <div class="player-info">
+                    <h4><?= htmlspecialchars($player['firstName']) ?> <?= htmlspecialchars($player['lastName']) ?></h4>
+                    <p><?= htmlspecialchars($player['pseudo']) ?></p>
+                </div>
+                <span><?= $player['nb_parties'] ?> parties jouées</span>
+            </div>
+        <?php endforeach ?>
+    </div>
+</section>

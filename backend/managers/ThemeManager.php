@@ -58,6 +58,13 @@
         return null;
     }
 
+    public function count():int
+    {
+        $query = $this->db->prepare('SELECT COUNT(id) FROM themes');
+            $query->execute();   
+            return (int) $query->fetchColumn(); 
+    }
+
     public function create(Theme $theme) : void # pour ajouter un nouveau thème dans la bdd
     {
         $query = $this->db->prepare('INSERT INTO themes (name) VALUES (:name)');
