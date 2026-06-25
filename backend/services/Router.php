@@ -75,6 +75,12 @@ class Router{
                 $this->adc->deleteUser();
             }elseif($get["route"] === "stats-display"){
                 $this->adc->statsDisplay();
+            }elseif($get["route"] === "themes-edit"){
+                $this->adc->themesDisplay();
+            }elseif($get["route"] === "theme-delete"){
+                $this->adc->deleteTheme();
+            }elseif($get["route"] === "themes-add"){
+                $this->adc->addTheme();
             }else {
                 $this->ac->notFound();
             }   

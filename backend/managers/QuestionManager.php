@@ -91,6 +91,13 @@ class QuestionManager extends AbstractManager{
         return $query->fetchAll(PDO::FETCH_KEY_PAIR); // retourne un tableau sous la forme de clé valeur
     }
 
+    public function countQuestionByTheme(int $themeId):int
+    {
+        $query = $this->db->prepare('SELECT COUNT(id) FROM questions WHERE theme_id = :theme_id');
+        $query->execute(['theme_id' => $themeId]);
+        return (int) $query->fetchColumn();
+    }
+
     public function create(Question $question) : void # pour ajouter une question en bdd
     {
         $query = $this->db->prepare('INSERT INTO questions (statement, explication, theme_id) VALUES (:statement, :explication, :theme_id)');

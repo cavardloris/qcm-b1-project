@@ -3,6 +3,7 @@
 class AdminController extends AbstractController{
 
     public function questionDisplay(){
+
         $questionManager = new QuestionManager();
         $questions = $questionManager->findAll();
         $questionsCount = $questionManager->countByThemeId();
@@ -113,7 +114,7 @@ class AdminController extends AbstractController{
         $this->redirect('index.php?route=users-edit');
     }
 
-        public function statsDisplay(){
+    public function statsDisplay(){
 
             $scoreManager = new ScoreManager();
             $countScore = $scoreManager->count();
@@ -136,5 +137,92 @@ class AdminController extends AbstractController{
                 "countTheme" => $countTheme
             ]);
 
+    }
+
+    public function themesDisplay(){
+
+        $themeManager = new ThemeManager();
+        $themes = $themeManager->findAll();
+        $countTheme = $themeManager->count();
+
+        $questionManager = new QuestionManager();
+        $totalByTheme = $questionManager->countByThemeId();
+
+
+        $this->render('admin/themesEdit.phtml', [
+            "themes" => $themes,
+            "totalByTheme" => $totalByTheme,
+            "countTheme" => $countTheme
+        ]);
+    }
+
+    public function addTheme(){
+
+        $error = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+            if(empty($_POST["theme"])){
+                $error = "Veuillez donner au thème que vous souhaitez créer";
+            }
+
+            $themeManager = new ThemeManager();
+            $themes = $themeManager->findAll();
+
+            foreach($themes as $theme){
+                if(strtolower($_POST["theme"]) === strtolower($theme->getName())){
+                    $error[] = "Ce thème est deja existant";
+                    break;
+                }
+            }
+            if(empty($error)){
+                $theme = new Theme($_POST["theme"],null);
+                $themeManager->create($theme);
+
+                $this->redirect('index.php?route=themes-edit');
+                exit;
+            }
+           
         }
+
+        $this->render('admin/themesAdd.phtml',["errors" => $error]);
+
+    }
+
+    public function deleteTheme(){
+        
+        $error = [];
+
+        $themeId = (int)$_GET["id"];
+        $questionManager = new QuestionManager();
+        $countQuestion = $questionManager->countQuestionByTheme($themeId);
+
+        if($countQuestion!=0)
+        {
+            $themeManager = new ThemeManager();
+            $themes = $themeManager->findAll();
+            $totalByTheme = $questionManager->countByThemeId();
+            $countTheme = count($themes);
+            $error[] = "Un thème ne peut être supprimé si des questions y sont encore associées.";
+            $this->render('admin/themesEdit.phtml', [
+                "errors" => $error,
+                "themes" => $themes,
+                "totalByTheme" => $totalByTheme,
+                "countTheme" => $countTheme
+            ]);
+            exit;
+        }
+
+        $themeManager = new ThemeManager();
+        $theme = $themeManager->findById($themeId);
+        if($theme)
+        {
+            $themeManager->delete($theme);
+        }
+        
+
+        $this->redirect('index.php?route=themes-edit');
+
+    }
+    
+
 } 

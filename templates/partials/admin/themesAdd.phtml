@@ -1,0 +1,25 @@
+<section class="themes-add">
+    <div class="home-container">
+        <?php require "templates/partials/admin/_headerAdministration.phtml"; ?>
+    </div>
+    <div class="form-container">
+        <h2>Ajouter un thème</h2>
+        <?php if (!empty($errors)): ?>
+            <div class="error-message">
+                <?php foreach ($errors as $error): ?>
+                    <p><?= htmlspecialchars($error) ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+        <form action="index.php?route=themes-add" method="POST" class="themes-form">
+            <div class="form-group">
+                <label for="theme">Intitulé du thème</label>
+                <input type="text" name="theme" id="theme" placeholder="Ex: Gastronomie" value="<?= htmlspecialchars($_POST['theme'] ?? '') ?>" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-add">Ajouter le thème</button>
+            </div>
+        </form>
+    </div>
+</section>

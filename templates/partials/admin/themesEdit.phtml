@@ -1,0 +1,31 @@
+<section class="themes-edit">
+    <div class="home-container">
+        <?php require "templates/partials/admin/_headerAdministration.phtml"; ?>
+    </div>
+    <div class="themes-left">
+        <h3>THÈMES</h3>
+        <span>TOTAL <?=htmlspecialchars($countTheme)?></span>
+        <?php foreach($themes as $theme): ?>
+            <a class="theme-filter" data-theme-id="<?= $theme->getId() ?>">
+                <?= htmlspecialchars($theme->getName()) ?>  
+            </a>
+        <?php endforeach; ?>
+    </div>
+    <div class="themes-list">
+        <div class="list-header">
+           <?php if (!empty($errors)): ?>
+                <div class="error-message"><?= htmlspecialchars($errors[0]) ?></div>
+            <?php endif; ?>
+            <a href="?route=themes-add" class="btn-add"><i class="fa-solid fa-plus"></i> Ajouter</a>
+        </div>
+        <?php foreach($themes as $theme): ?>
+            <div class="theme-card">
+                <span><?= htmlspecialchars($theme->getName()) ?></span>
+                <p><?= htmlspecialchars($totalByTheme[$theme->getId()] ?? 0) ?> questions</p>
+                <a href="?route=theme-delete&id=<?= $theme->getId() ?>" class="btn-delete">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>
