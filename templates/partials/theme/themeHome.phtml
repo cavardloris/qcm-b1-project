@@ -8,6 +8,13 @@
     <div class="title">
         <h1>Choisissez votre thème</h1>
     </div>
+    <?php if (!empty($errors)): ?>
+        <div class="theme-errors">
+            <div class="error-box" role="alert" aria-live="assertive">
+                <p><i class="fa-solid fa-circle-exclamation"></i> <?= htmlspecialchars($errors[0]) ?></p>
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="theme-container">
         <?php foreach($themes as $theme):?>
             <a href="?route=start-quiz&themeId=<?= $theme->getId() ?>" class="box-theme">

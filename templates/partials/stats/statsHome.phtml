@@ -12,7 +12,7 @@
                 <h4>Parties jouées</h4> 
         </div>
         <div class="box-stat">
-                <span class="number"> <?= htmlspecialchars(round($totalPoints/($gamePlayedInTheme*12) *100))?> %</span>
+                <span class="number"> <?= htmlspecialchars($gamePlayedInTheme > 0 ? round(($totalPoints / ($gamePlayedInTheme * 12)) * 100) : 0) ?> %</span>
                 <h4>Score Moyen</h4>
         </div>
         <div class="box-stat">

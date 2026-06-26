@@ -2,7 +2,18 @@
 
 class AdminController extends AbstractController{
 
+
+    public function checkAccess(){
+
+        if (!isset($_SESSION["role"]) || $_SESSION["role"] !== 'ADMIN') {
+            $this->redirect('index.php?route=home');
+            exit;
+        }
+        
+    }
     public function questionDisplay(){
+
+        $this->checkAccess();
 
         $questionManager = new QuestionManager();
         $questions = $questionManager->findAll();
@@ -21,6 +32,9 @@ class AdminController extends AbstractController{
     }
 
     public function deleteQuestion(){
+
+        $this->checkAccess();
+
         if(!empty($_GET["id"])){
             $id = (int) $_GET["id"];
         }
@@ -38,6 +52,9 @@ class AdminController extends AbstractController{
     }
 
     public function addQuestion(){
+
+        $this->checkAccess();
+
         $error = [];
         $themeManager = new ThemeManager();
         $themes = $themeManager->findAll();
@@ -82,16 +99,19 @@ class AdminController extends AbstractController{
     }
 
     public function displayUsers(){
+
+        $this->checkAccess();
+
         $userManager = new UserManager();
         $users = $userManager->findAll();
-
-        
 
         $this->render('admin/usersDisplay.phtml', ["users" => $users]);
 
     }
 
     public function deleteUser(){
+
+        $this->checkAccess();
 
         if (!isset($_GET["id"]) || empty($_GET["id"])) {
             $this->redirect('index.php?route=users-edit');
@@ -115,6 +135,8 @@ class AdminController extends AbstractController{
     }
 
     public function statsDisplay(){
+
+            $this->checkAccess();
 
             $scoreManager = new ScoreManager();
             $countScore = $scoreManager->count();
@@ -141,6 +163,8 @@ class AdminController extends AbstractController{
 
     public function themesDisplay(){
 
+        $this->checkAccess();
+
         $themeManager = new ThemeManager();
         $themes = $themeManager->findAll();
         $countTheme = $themeManager->count();
@@ -157,6 +181,8 @@ class AdminController extends AbstractController{
     }
 
     public function addTheme(){
+
+        $this->checkAccess();
 
         $error = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') 
@@ -189,7 +215,8 @@ class AdminController extends AbstractController{
     }
 
     public function deleteTheme(){
-        
+
+        $this->checkAccess();
         $error = [];
 
         $themeId = (int)$_GET["id"];

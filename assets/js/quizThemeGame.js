@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const form = document.querySelector(".quiz-form");
       const score = document.querySelector(".score");
       // document.querySelectorAll(".box-answer").forEach((btn) => {
-      //   btn.disabled = true;
+      //   btn.disabled = true;    A REACTIVER
       // });
       console.log(score.textContent);
       const formData = new FormData(form); // on crée un formData qui stockera les réponses

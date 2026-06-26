@@ -14,6 +14,8 @@ class ThemeController extends AbstractController{
     }
 
     public function startQuiz(){
+        
+        $error = [];
         if(!isset($_SESSION["id"])){
             $this->redirect('index.php?route=login');
             exit;
@@ -26,8 +28,15 @@ class ThemeController extends AbstractController{
         $questionManager = new QuestionManager();
         $questions = $questionManager->findByThemeId($themeId);
 
-        if (empty($questions)) {
-            $this->redirect('index.php?route=choix-theme'); // Si un thème n'a pas de question on renvoie sur le choix des thèmes
+        if (count($questions) < 11) {
+            $error[] = "Le thème choisi ne contient pas assez de questions (12 minimum)";
+            $themeManager = new ThemeManager();
+            $themes = $themeManager->findAll();
+            
+            $this->render('theme/themeHome.phtml', [
+                "errors" => $error,
+                "themes" => $themes
+            ]); // Si un thème n'a pas assez de question on renvoie sur le choix des thèmes
             exit;
         }
 

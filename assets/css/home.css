@@ -7,7 +7,7 @@
   margin: 0 auto;
 }
 
-section {
+.home section {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -148,7 +148,7 @@ section {
     padding: 24px !important;
   }
 
-  section {
+  .home section {
     padding: 20px;
   }
 

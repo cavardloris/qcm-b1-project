@@ -20,24 +20,51 @@ main {
 .arrow-back {
   display: inline-flex;
   align-items: center;
-  color: #ffffff;
+  color: var(--text-main-color);
   text-decoration: none;
   font-size: 16px;
   gap: 8px;
   margin-top: 10px;
   margin-bottom: 20px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family);
   opacity: 0.9;
 }
 
 .title h1 {
-  color: #ffffff;
-  font-family: "Inter", sans-serif;
+  color: var(--text-main-color);
+  font-family: var(--font-family);
   font-size: 32px;
   font-weight: 700;
   text-align: center;
   margin: 0 0 32px 0;
   letter-spacing: -0.5px;
+}
+
+.theme-errors {
+  width: 100%;
+  margin: 0 auto 24px auto;
+  box-sizing: border-box;
+}
+
+.error-box {
+  background-color: #fef3f2;
+  border: 1px solid #fee4e2;
+  padding: 14px 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(180, 35, 24, 0.1);
+}
+
+.error-box p {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+  color: #b42318;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .theme-container {
@@ -68,8 +95,8 @@ main {
 }
 
 .box-theme h3 {
-  color: #ffffff;
-  font-family: "Inter", sans-serif;
+  color: var(--text-main-color);
+  font-family: var(--font-family);
   font-size: 20px;
   font-weight: 700;
   margin: 0;
@@ -93,6 +120,7 @@ main {
 .theme-container .box-theme:nth-child(6n + 6) {
   background-color: var(--bg-sixth-color);
 }
+
 @media (min-width: 768px) {
   .theme-page {
     max-width: 1200px;
@@ -110,6 +138,15 @@ main {
   .title h1 {
     font-size: 48px;
     margin-bottom: 48px;
+  }
+
+  .theme-errors {
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+
+  .error-box p {
+    font-size: 16px;
   }
 
   .theme-container {

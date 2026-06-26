@@ -9,11 +9,16 @@
 }
 
 .info-container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px 12px;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   margin-top: 10px;
+}
+
+.question-number {
+  grid-column: 1 / 2;
 }
 
 .question-number h4 {
@@ -21,6 +26,7 @@
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.5px;
+  margin: 0;
 }
 
 .question-number .total-questions {
@@ -30,16 +36,45 @@
 }
 
 .info-container .theme {
+  grid-column: 1 / 2;
+  justify-self: flex-start;
   background-color: var(--bg-fourth-color);
   color: var(--text-main-color);
-  padding: 8px 18px;
+  padding: 6px 14px;
   border-radius: 20px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.timer-container {
+  grid-column: 2 / 3;
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-main-color);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+  border: 2px solid transparent;
+}
+
+.timer-container i {
+  font-size: 14px;
+}
+
+.timer {
+  min-width: 20px;
+  text-align: center;
+}
+
 .info-container .arrow-back {
+  grid-column: 2 / 3;
+  justify-self: flex-end;
   color: var(--text-main-color);
   font-size: 26px;
   text-decoration: none;
@@ -54,7 +89,7 @@
 .game-container {
   background-color: var(--text-main-color);
   border-radius: 24px;
-  padding: 40px 24px 32px 24px;
+  padding: 32px 16px 24px 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   flex-grow: 1;
   display: flex;
@@ -87,7 +122,7 @@
   width: 100%;
   border: 2px solid transparent;
   outline: none;
-  padding: 20px 24px;
+  padding: 16px 20px;
   border-radius: 18px;
   color: var(--text-main-color);
   font-family: var(--font-family), sans-serif;

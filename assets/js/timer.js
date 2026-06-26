@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!timerDisplay || !quizForm) return;
 
-  // 1. Lancement du chrono
+  //Lancement du chrono
   const countdown = setInterval(() => {
     timeLeft--;
     timerDisplay.textContent = timeLeft;
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (timeLeft <= 0) {
       clearInterval(countdown); // Si le temps restant est inferieur ou egal a 0 on arrête le chrono
 
-      // Si aucune réponse n'est cochée, on force la valeur 0
+      // Si aucune réponse n'est cochée, on met la valeur 0
       if (!quizForm.querySelector("input[name='answer_id']:checked")) {
         quizForm.insertAdjacentHTML(
           "beforeend",

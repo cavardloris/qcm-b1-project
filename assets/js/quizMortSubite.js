@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!quizForm) return;
 
-  // 1. Gestion du Compte à rebours
+  // On gère le compte à rebours
   const countdown = setInterval(() => {
     if (!timerDisplay) return;
     timeLeft--;

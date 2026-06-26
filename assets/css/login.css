@@ -38,7 +38,7 @@
 }
 
 .error-box {
-  background-color: var(--border-wrong-color);
+  background-color: #fef3f2;
   color: var(--text-main-color);
   padding: 8px 12px;
   border-radius: 8px;
@@ -46,6 +46,7 @@
 }
 
 .error-box p {
+  color: #b42318;
   margin: 0;
   font-family: var(--font-family), sans-serif;
   font-size: 13px;
