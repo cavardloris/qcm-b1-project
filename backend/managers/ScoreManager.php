@@ -52,7 +52,7 @@ class ScoreManager extends AbstractManager{
     {
         $query = $this->db->prepare('SELECT scores.*, themes.id AS theme_id, themes.name AS theme_name,
                                          users.id AS user_id, users.firstName AS user_firstName, users.lastName AS user_lastName, users.pseudo AS user_pseudo, users.email AS user_email, users.password AS user_password, users.role AS user_role  
-                                         FROM users INNER JOIN scores ON users.id = scores.user_id INNER JOIN themes ON scores.theme_id = themes.id WHERE scores.user_id = :user_id ');
+                                         FROM users INNER JOIN scores ON users.id = scores.user_id LEFT JOIN themes ON scores.theme_id = themes.id WHERE scores.user_id = :user_id ');
         $parameters = [
             "user_id" => $user_id
         ];
@@ -62,9 +62,14 @@ class ScoreManager extends AbstractManager{
 
         foreach($result as $item)
         {
-            $theme = new Theme($item["theme_name"], $item["theme_id"]);
+            if (!empty($item["theme_name"])) {
+                $theme = new Theme($item["theme_name"], $item["theme_id"]);
+            } else {
+                $theme = null;
+            }
             $user = new User($item["user_firstName"], $item["user_lastName"], $item["user_pseudo"], $item["user_email"], $item["user_password"], Role::from($item["user_role"]), $item["user_id"]);
-            $score = new Score($user, $theme,$item["points"], $item["serie_max"], $item["mode"], $item["score_date"]);
+            $score = new Score($user, $theme, $item["points"], $item["serie_max"], Mode::from($item["mode"]), new DateTime($item["score_date"]));
+            $score->setId($item["id"]);
             $scores[] = $score;
         }
 
@@ -217,7 +222,7 @@ class ScoreManager extends AbstractManager{
             "theme_id" => $themeId,
             "points" => $score->getPoints(),
             "serie_max" => $score->getSerieMax(),
-            "mode" => $score->getMode(),
+            "mode" => $score->getMode()->value,
             "score_date" => $score->getScoreDate(),
             "id" => $score->getId()
         ];

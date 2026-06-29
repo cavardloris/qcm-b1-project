@@ -1,7 +1,7 @@
 <?php
 
 class Score{
-    public function __construct(private User $user, private ?Theme $theme, private int $points = 0, private int $serie_max, private Mode $mode, private DateTime $date = new DateTime(), private ?int $id)
+    public function __construct(private User $user, private ?Theme $theme, private int $points = 0, private int $serie_max, private Mode $mode, private DateTime $date = new DateTime(), private ?int $id = null)
     {
 
     }

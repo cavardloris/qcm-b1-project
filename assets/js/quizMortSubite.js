@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (timeLeft <= 0) {
       clearInterval(countdown);
-      // Si le temps est écoulé et que rien n'est coché, on force l'input 0 et on valide
+      // Si le temps est écoulé on met le chrono à 0;
       quizForm.insertAdjacentHTML(
         "beforeend",
         '<input type="hidden" name="answer_id" value="0">',
@@ -23,18 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 1000);
 
-  // 2. Gestion du Clic sur une réponse
   answerButtons.forEach((button) => {
     button.addEventListener("click", function (e) {
-      e.preventDefault(); // On bloque la soumission immédiate pour montrer les couleurs
-      clearInterval(countdown); // On arrête le chrono tout de suite
+      e.preventDefault(); // On bloque la soumission du form pour montrer les couleurs
+      clearInterval(countdown); // On arrête le chrono
 
       const clickedButton = e.currentTarget;
 
       // Désactiver tous les boutons pour éviter le double-clic
       answerButtons.forEach((btn) => (btn.disabled = true));
 
-      // Affichage des retours visuels (Vert / Rouge)
+      // On affiche les couleurs correspondantes(rouge = mauvaises réponses, vert = bonne réponse)
       answerButtons.forEach((btn) => {
         if (btn.dataset.correct === "1") {
           btn.classList.add("correct");
@@ -43,14 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // On crée un input caché avec l'ID de la réponse cliquée
       const answerId = clickedButton.value;
       quizForm.insertAdjacentHTML(
         "beforeend",
         `<input type="hidden" name="answer_id" value="${answerId}">`,
       );
 
-      // On attend 1,5 seconde pour laisser le joueur voir le résultat, puis on envoie le formulaire !
+      //  On laisse un délais de 1 seconde et demie au joueur pour voir le résultat
       setTimeout(() => {
         quizForm.submit();
       }, 1500);
