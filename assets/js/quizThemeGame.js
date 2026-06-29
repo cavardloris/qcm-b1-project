@@ -39,6 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch((error) => {
           console.error("Erreur lors de l'envoi :", error);
           window.location.reload();
+
+          document.querySelectorAll(".box-answer").forEach((btn) => {
+            btn.disabled = false;
+          });
         });
     });
   });
