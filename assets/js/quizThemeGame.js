@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
       //Récupération dynamique du formulaire lié au bouton cliqué
       const form = document.querySelector(".quiz-form");
       const score = document.querySelector(".score");
-      // document.querySelectorAll(".box-answer").forEach((btn) => {
-      //   btn.disabled = true;    A REACTIVER
-      // });
+      document.querySelectorAll(".box-answer").forEach((btn) => {
+        btn.disabled = true;
+      });
       console.log(score.textContent);
       const formData = new FormData(form); // on crée un formData qui stockera les réponses
 
